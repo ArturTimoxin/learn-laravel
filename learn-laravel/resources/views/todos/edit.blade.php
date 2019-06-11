@@ -5,9 +5,6 @@
 
     <form method="POST" action="/todos/{{ $todo->todo_id }}" class="edit-todo-form">
 
-        <!-- {{ method_field('PATCH') }}
-        {{ csrf_field() }} -->
-
         @method('PATCH')
         @csrf
         <div class="form-group">
@@ -30,10 +27,6 @@
     </form>
 
     <form method="POST" action="/todos/{{ $todo->todo_id }}">
-        <!-- {{ method_field('DELETE') }}
-        {{ csrf_field() }}
-
-        ИЛИ: -->
 
         @method('DELETE')
         @csrf
