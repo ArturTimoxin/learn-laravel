@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTodosTable extends Migration
+class CreateSubtasksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateTodosTable extends Migration
      */
     public function up()
     {
-        Schema::create('todos', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('todo_title');
-            $table->text('todo_description');
-            $table->timestamps(); // поле созд записи
+        Schema::create('subtasks', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedInteger('todo_id');
+            $table->string('description');
+            $table->boolean('completed')->default(false);
+            $table->timestamps();
         });
     }
 
@@ -28,6 +29,6 @@ class CreateTodosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('todos');
+        Schema::dropIfExists('subtasks');
     }
 }

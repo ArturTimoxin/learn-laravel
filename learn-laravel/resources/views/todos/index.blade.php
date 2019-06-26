@@ -7,7 +7,7 @@
         @foreach ($tasks as $task)
 
         <li>
-            <a href="/todos/{{ $task->todo_id }}">
+            <a href="/todos/{{ $task->id }}">
                 {{ $task->todo_title }}
             </a>
         </li>

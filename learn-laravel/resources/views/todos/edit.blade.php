@@ -3,7 +3,7 @@
 @section('content')
     <h1 class="title">Edit project:</h1>
 
-    <form method="POST" action="/todos/{{ $todo->todo_id }}" class="edit-todo-form">
+    <form method="POST" action="/todos/{{ $todo->id }}" class="edit-todo-form">
 
         @method('PATCH')
         @csrf
@@ -26,11 +26,11 @@
         </div>
     </form>
 
-    <form method="POST" action="/todos/{{ $todo->todo_id }}">
+    <form method="POST" action="/todos/{{ $todo->id }}">
 
         @method('DELETE')
         @csrf
-
+        
         <div class="form-group">
             <div class="controll">
                 <button type="submit" class="btn btn-danger">DELETE TODO</button>
@@ -38,4 +38,6 @@
         </div>
     </form>
 
+    @include('errors')
+    
 @endsection

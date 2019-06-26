@@ -1,5 +1,6 @@
 <?php
 
+use App\Services\Twitter;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,7 +12,21 @@
 |
 */
 
-Route::get('/', 'PagesController@home');
+// singleton container
+
+app()->singleton('App\Services\Twitter', function () {
+    
+    return new Twitter('lololo');
+});
+
+//////////////////////////
+
+Route::get('/', function (Twitter $twitter) {
+    // dd($twitter);
+    return view('welcome');
+});
+
+// Route::get('/', 'PagesController@home');
 Route::get('/about', 'PagesController@about');
 Route::get('/contact', 'PagesController@contact');
 
@@ -24,6 +39,8 @@ Route::get('/contact', 'PagesController@contact');
 // Route::patch('/todos/{todo}', 'TodoController@update');
 // Route::delete('/todos/{todo}', 'TodoController@destroy');
 
-// ВМЕСТО ЭТОГО можно подключить стандартный CRUD
+// ВМЕСТО ЭТОГО можно подключить стандартный CRUD - resourse
 
 Route::resource('todos', 'TodoController');
+Route::patch('/subtasks/{subtask}', 'TodoSubtasksController@update');
+Route::post('todos/{todo}/subtasks', 'TodoSubtasksController@store');

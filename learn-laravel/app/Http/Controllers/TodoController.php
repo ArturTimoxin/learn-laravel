@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Todo;  
+use App\Todo;
+use App\Services\Twitter;  
 
 use Illuminate\Http\Request;
 
@@ -24,13 +25,20 @@ class TodoController extends Controller
 
     public function store() {
 
-        Todo::create(request(['todo_title', 'todo_description']));
+        $validated = request()->validate([
+            'todo_title' => ['required', 'min:3', 'max:255'],
+            'todo_description' => ['required', 'min:3']
+        ]);
+
+        Todo::create($validated);
 
         return redirect('/todos');
 
     }
 
-    public function show(Todo $todo) {
+    public function show(Todo $todo, Twitter $twitter) {
+
+        dd($twitter);
 
         return view('todos.show', compact('todo'));
     

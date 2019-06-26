@@ -15,6 +15,14 @@
         .links li {
             margin: 5px;
         }
+
+        .is-complete {
+            text-decoration: line-through;
+        }
+        .wrap-container {
+            width: 75%;
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body>
@@ -26,6 +34,8 @@
             <li><a href="/todos">My TODO list</a></li>
         </ul>
     </header>
-    @yield('content')
+    <div class="wrap-container">
+        @yield('content')
+    </div>
 </body>
 </html>
