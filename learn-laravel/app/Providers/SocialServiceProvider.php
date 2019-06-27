@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Service\Twitter;
+use App\Services\Twitter;
 
 
 class SocialServiceProvider extends ServiceProvider
@@ -19,7 +19,7 @@ class SocialServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(Twitter::class, function() {
-            return new Twitter('api-key');
+            return new Twitter(config('services.twitter.secret')); // from config/services file
         });
     }
 

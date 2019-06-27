@@ -14,15 +14,17 @@ use App\Services\Twitter;
 
 // singleton container
 
-app()->singleton('App\Services\Twitter', function () {
+// app()->singleton('App\Services\Twitter', function () {
     
-    return new Twitter('lololo');
-});
+//     return new Twitter('lololo');
+// });
 
 //////////////////////////
 
 Route::get('/', function (Twitter $twitter) {
+
     // dd($twitter);
+
     return view('welcome');
 });
 
@@ -44,3 +46,7 @@ Route::get('/contact', 'PagesController@contact');
 Route::resource('todos', 'TodoController');
 Route::patch('/subtasks/{subtask}', 'TodoSubtasksController@update');
 Route::post('todos/{todo}/subtasks', 'TodoSubtasksController@store');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
