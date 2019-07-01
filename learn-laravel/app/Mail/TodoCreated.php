@@ -1,0 +1,38 @@
+<?php
+
+namespace App\Mail;
+
+use Illuminate\Bus\Queueable;
+use Illuminate\Mail\Mailable;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Queue\ShouldQueue;
+
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TodoCreated;
+
+class TodoCreated extends Mailable
+{
+    use Queueable, SerializesModels;
+
+    public $todo;
+
+    /**
+     * Create a new message instance.
+     *
+     * @return void
+     */
+    public function __construct($todo)
+    {
+        $this->todo = $todo;
+    }
+
+    /**
+     * Build the message.
+     *
+     * @return $this
+     */
+    public function build()
+    {
+        return $this->markdown('mail.todo-created');
+    }
+}

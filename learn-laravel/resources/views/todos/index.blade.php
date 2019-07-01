@@ -4,11 +4,11 @@
     <h1>My todo list:</h1>
 
     <ul>
-        @foreach ($tasks as $task)
+        @foreach ($todos as $todo)
 
         <li>
-            <a href="/todos/{{ $task->id }}">
-                {{ $task->todo_title }}
+            <a href="/todos/{{ $todo->id }}">
+                {{ $todo->todo_title }}
             </a>
         </li>
 

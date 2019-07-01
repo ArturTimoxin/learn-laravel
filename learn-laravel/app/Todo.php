@@ -3,12 +3,37 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+// use Illuminate\Support\Facades\Mail;
+use App\Events\TodoCreated;
+
 
 class Todo extends Model
 {
     protected $fillable = [
-        'todo_title', 'todo_description'
+        'todo_title', 'todo_description', 'owner_id'
     ];
+
+    protected $dispatchesEvents = [
+        'created' => TodoCreated::class
+    ];
+
+    // public static function boot() { // выполнить после создания модели
+        
+    //     parent::boot();
+
+    //     static::created(function ($todo) { // runnig when model will be created
+    //         // Mail::to($todo->owner->email)->send(
+    //         //     new TodoCreated($todo)
+    //         // );
+    //     });
+
+    // }
+
+    public function owner() {
+        
+        return $this->belongsTo(User::class);
+
+    }
 
     public function subtasks() {
 

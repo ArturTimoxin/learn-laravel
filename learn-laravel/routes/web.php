@@ -21,14 +21,14 @@ use App\Services\Twitter;
 
 //////////////////////////
 
-Route::get('/', function (Twitter $twitter) {
+// Route::get('/', function (Twitter $twitter) {
 
-    // dd($twitter);
+//     // dd($twitter);
 
-    return view('welcome');
-});
+//     return view('welcome');
+// });
 
-// Route::get('/', 'PagesController@home');
+Route::get('/', 'PagesController@home');
 Route::get('/about', 'PagesController@about');
 Route::get('/contact', 'PagesController@contact');
 

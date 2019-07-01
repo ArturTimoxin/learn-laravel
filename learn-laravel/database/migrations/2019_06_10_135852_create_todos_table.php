@@ -15,9 +15,11 @@ class CreateTodosTable extends Migration
     {
         Schema::create('todos', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('owner_id');
             $table->string('todo_title');
             $table->text('todo_description');
             $table->timestamps(); // поле созд записи
+            $table->foreign('owner_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
