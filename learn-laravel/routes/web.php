@@ -1,6 +1,7 @@
 <?php
 
 use App\Services\Twitter;
+use App\Notifications\SubscriptionRenewalFailed;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,3 +51,11 @@ Route::post('todos/{todo}/subtasks', 'TodoSubtasksController@store');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/notify-test', function() {
+    $user = App\User::first();
+
+    $user->notify(new SubscriptionRenewalFailed);
+
+    return 'Notification was sended';
+});
